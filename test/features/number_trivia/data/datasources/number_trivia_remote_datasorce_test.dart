@@ -1,12 +1,14 @@
 import 'dart:convert';
+
 import 'package:flutter_app/core/error/exceptions.dart';
 import 'package:flutter_app/features/number_trivia/data/datasources/number_trivia_remote_datasource.dart';
 import 'package:flutter_app/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import 'package:matcher/matcher.dart' as matcher;
-import '../../../../fixtures/fixture_reader.dart';
 import 'package:http/http.dart' as http;
+import 'package:matcher/matcher.dart' as matcher;
+import 'package:mockito/mockito.dart';
+
+import '../../../../fixtures/fixture_reader.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
