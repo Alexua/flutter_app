@@ -46,7 +46,7 @@ void main() {
       when(mockInputConverter.stringTounsignedInterger(any))
           .thenReturn(Right(tNumberParsed));
       //-- act
-      bloc.dispatch(GetNumberTriviaForConcreteNumber(tNumberString));
+      bloc.add(GetTriviaForConcreteNumber(tNumberString));
       await untilCalled(mockInputConverter.stringTounsignedInterger(any));
       //-- assert
       verify(mockInputConverter.stringTounsignedInterger(tNumberString));
@@ -60,7 +60,7 @@ void main() {
       expectLater(bloc.state, emitsInOrder([Empty(), Error(message: INVALID_INPUT_FAILURE_MESSAGE)]));
 
       //-- act
-      bloc.dispatch(GetNumberTriviaForConcreteNumber(tNumberString));
+      bloc.add(GetTriviaForConcreteNumber(tNumberString));
 
     });
 
@@ -72,10 +72,10 @@ void main() {
         .thenAnswer((_) async => Right(tNumberTrivia));
 
       //-- act
-      bloc.dispatch(GetNumberTriviaForConcreteNumber(tNumberString));
+      bloc.add(GetTriviaForConcreteNumber(tNumberString));
       await untilCalled(mockGetConcreteNumberTrivia(any));
       //--asserts
-      verify(mockGetConcreteNumberTrivia(Params(tNumberParsed)));
+      verify(mockGetConcreteNumberTrivia(Params(number: tNumberParsed)));
     });
 
     test('should emit [Loading, Loaded] when data is gotten successfully',() async {
@@ -90,7 +90,7 @@ void main() {
       expectLater(bloc.state, emitsInOrder(expected));
 
       //-- act
-      bloc.dispatch(GetNumberTriviaForConcreteNumber(tNumberString));
+      bloc.add(GetTriviaForConcreteNumber(tNumberString));
     });
 
     test('should emit [Loading, Error] when data is gotten successfully',() async {
@@ -105,7 +105,7 @@ void main() {
       expectLater(bloc.state, emitsInOrder(expected));
 
       //-- act
-      bloc.dispatch(GetNumberTriviaForConcreteNumber(tNumberString));
+      bloc.add(GetTriviaForConcreteNumber(tNumberString));
     });
 
     test('should emit [Loading, Error] with a proper message for error',() async {
@@ -120,7 +120,7 @@ void main() {
       expectLater(bloc.state, emitsInOrder(expected));
 
       //-- act
-      bloc.dispatch(GetNumberTriviaForConcreteNumber(tNumberString));
+      bloc.add(GetTriviaForConcreteNumber(tNumberString));
     });
 
   });

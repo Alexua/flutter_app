@@ -1,16 +1,17 @@
 import 'package:equatable/equatable.dart';
 
 abstract class NumberTriviaEvent extends Equatable {
-  NumberTriviaEvent([List props = const<dynamic>[]]) : super(props);
-//  const NumberTriviaEvent();
+  @override
+  List<Object> get props => [];
 }
 
-class GetNumberTriviaForConcreteNumber extends NumberTriviaEvent{
+class GetTriviaForConcreteNumber extends NumberTriviaEvent {
   final String numberString;
 
-  GetNumberTriviaForConcreteNumber(this.numberString): super([numberString]);
-}
-class GetNumberTriviaForRandomNumber extends NumberTriviaEvent{
+  GetTriviaForConcreteNumber(this.numberString);
 
+  @override
+  List<Object> get props => [numberString];
 }
 
+class GetTriviaForRandomNumber extends NumberTriviaEvent {}
